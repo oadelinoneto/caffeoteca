@@ -1,0 +1,7 @@
+# Changelog
+
+## Resumo Geral do Dia
+- Refatoracao da estrutura de rotas e controllers por dominio
+- Ajustes de navegacao entre telas administrativas e perfil
+- Criacao de novas telas (cadastro e perfil de usuario)
+- Geracao de esquema SQL 

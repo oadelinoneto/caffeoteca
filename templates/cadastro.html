@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Coffeoteca</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Painel Esquerdo - Marca -->
+        <div class="login-left">
+            <div class="branding">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg>
+                    </div>
+                    <h1>Coffeoteca</h1>
+                </div>
+                <p class="tagline">Crie sua conta para reservar espaços, explorar o cardápio e acompanhar seus pedidos.</p>
+
+                <div class="features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="20" x2="12" y2="10"></line>
+                                <line x1="18" y1="20" x2="18" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="16"></line>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Experiência personalizada</h3>
+                            <p>Acesse conteúdos e recomendações com base no seu perfil.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Biblioteca e café</h3>
+                            <p>Descubra livros, bebidas e serviços em um único ambiente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Painel Direito - Cadastro -->
+        <div class="login-right">
+            <div class="login-form-container">
+                <div class="form-header">
+                    <h2>Criar Conta</h2>
+                    <p>Preencha os dados abaixo para finalizar seu cadastro</p>
+                </div>
+
+                <form class="login-form" action="/cadastro" method="post">
+                    <div class="form-group">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username">Nome de usuário</label>
+                        <input type="text" id="username" name="username" placeholder="Escolha um nome de usuário" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm_password">Confirmar senha</label>
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="termos" required>
+                            <span>Aceito os termos de uso</span>
+                        </label>
+                    </div>
+
+                    <input type="submit" value="Criar conta" class="btn-login">
+
+                    <div class="form-divider">
+                        <span>ou</span>
+                    </div>
+
+                    <a href="/login" class="btn-secondary">Já tenho conta</a>
+                </form>
+
+                <div class="form-footer">
+                    <p>Quer voltar? <a href="/">Ir para início</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - Café Artesanal</title>
+    <link rel="stylesheet" href="/static/css/cart.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="cart-header">
+        <div class="header-content">
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 5C15 5 12 8 12 12V20C12 24 15 27 20 27C25 27 28 24 28 20V12C28 8 25 5 20 5Z" stroke="#F0E2C9" stroke-width="2"/>
+                    <path d="M12 20C12 20 10 22 10 25C10 28 12 30 15 30H25C28 30 30 28 30 25C30 22 28 20 28 20" stroke="#F0E2C9" stroke-width="2"/>
+                    <line x1="8" y1="12" x2="32" y2="12" stroke="#F0E2C9" stroke-width="2"/>
+                    <path d="M20 30V35" stroke="#F0E2C9" stroke-width="2"/>
+                    <path d="M15 35H25" stroke="#F0E2C9" stroke-width="2"/>
+                </svg>
+                <h1>Café Artesanal</h1>
+            </div>
+            <nav class="breadcrumb">
+                <a href="/menu">Cardápio</a>
+                <span>›</span>
+                <span>Carrinho</span>
+            </nav>
+        </div>
+    </header>
+
+    <main class="cart-container">
+        <div class="cart-content">
+            <!-- Coluna Esquerda -->
+            <div class="cart-items-section">
+                <div class="section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="1"></circle>
+                        <circle cx="19" cy="21" r="1"></circle>
+                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                    </svg>
+                    <h2>Meu Carrinho</h2>
+                    <span class="item-count">({{ carrinho|length }} itens)</span>
+                </div>
+
+                <div class="cart-items">
+                    {% if carrinho %}
+                    {% for item in carrinho %}
+                    <div class="cart-item">
+                        <div class="item-image">
+                            <div class="image-placeholder">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                                    <line x1="6" y1="1" x2="6" y2="4"></line>
+                                    <line x1="10" y1="1" x2="10" y2="4"></line>
+                                    <line x1="14" y1="1" x2="14" y2="4"></line>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="item-details">
+                            <h3>{{ item.nome }}</h3>
+                            <p class="item-description">{{ item.descricao }}</p>
+                            <div class="item-options">
+                                <span class="option-badge">ID {{ item.id }}</span>
+                            </div>
+                        </div>
+                        <div class="item-price">
+                            <span class="unit-price">Unitario</span>
+                            <span class="total-price">R$ {{ '%.2f'|format(item.preco|float) }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p class="item-description">Seu carrinho esta vazio.</p>
+                    {% endif %}
+                </div>
+
+                <!-- Continuar as Compras -->
+                <div class="continue-shopping">
+                    <a href="/menu" class="continue-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        Continuar Comprando
+                    </a>
+                </div>
+            </div>
+
+            <!-- Coluna Direita -->
+            <div class="order-summary-section">
+                <div class="order-summary-card">
+                    <h2>Resumo do Pedido</h2>
+
+                    <!-- Opções de Delivery -->
+                    <div class="delivery-options">
+                        <h3>Tipo de Entrega</h3>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="delivery" value="pickup" checked>
+                                <div class="radio-content">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                    </svg>
+                                    <div>
+                                        <strong>Retirada</strong>
+                                        <span>Grátis - Pronto em 15-20 min</span>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="delivery" value="delivery">
+                                <div class="radio-content">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="1" y="3" width="15" height="13"></rect>
+                                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                    </svg>
+                                    <div>
+                                        <strong>Delivery</strong>
+                                        <span>R$ 8,00 - 30-40 min</span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Preço -->
+                    {% set ns = namespace(subtotal=0) %}
+                    {% for item in carrinho %}
+                        {% set ns.subtotal = ns.subtotal + (item.preco|float) %}
+                    {% endfor %}
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal-price">R$ {{ '%.2f'|format(ns.subtotal) }}</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Taxa de Entrega</span>
+                            <span id="delivery-fee">R$ 0,00</span>
+                        </div>
+                        <div class="price-row discount">
+                            <span>
+                                Desconto
+                                <span class="discount-badge">-</span>
+                            </span>
+                            <span class="discount-value">R$ 0,00</span>
+                        </div>
+                        <div class="price-divider"></div>
+                        <div class="price-row total">
+                            <span>Total</span>
+                            <span id="total-price">R$ {{ '%.2f'|format(ns.subtotal) }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Cupom -->
+                    <div class="coupon-section">
+                        <h3>Cupom de Desconto</h3>
+                        <div class="coupon-input-group">
+                            <input type="text" placeholder="Digite seu cupom" class="coupon-input" id="coupon-code">
+                            <button class="apply-coupon-btn" type="button">Aplicar</button>
+                        </div>
+                    </div>
+
+                    <!-- Informações Cliente -->
+                    <div class="customer-info-section">
+                        <h3>Informações de Contato</h3>
+                        <form class="customer-form">
+                            <div class="form-group">
+                                <label>Nome Completo *</label>
+                                <input type="text" placeholder="Digite seu nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone *</label>
+                                <input type="tel" placeholder="(11) 99999-9999" required>
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail</label>
+                                <input type="email" placeholder="seu@email.com">
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Endereço para Entrega -->
+                    <div class="delivery-address-section" id="delivery-address" style="display: none;">
+                        <h3>Endereço de Entrega</h3>
+                        <form class="address-form">
+                            <div class="form-group">
+                                <label>CEP *</label>
+                                <input type="text" placeholder="00000-000" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Rua *</label>
+                                    <input type="text" placeholder="Nome da rua" required>
+                                </div>
+                                <div class="form-group small">
+                                    <label>Número *</label>
+                                    <input type="text" placeholder="123" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Complemento</label>
+                                <input type="text" placeholder="Apto, Bloco, etc.">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Bairro *</label>
+                                    <input type="text" placeholder="Bairro" required>
+                                </div>
+                                <div class="form-group small">
+                                    <label>Cidade *</label>
+                                    <input type="text" placeholder="Cidade" required>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Método de Pagamento -->
+                    <div class="payment-section">
+                        <h3>Forma de Pagamento</h3>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="credit" checked>
+                                <div class="payment-content">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                                    </svg>
+                                    <span>Cartão de Crédito</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="debit">
+                                <div class="payment-content">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                        <line x1="1" y1="10" x2="23" y2="10"></line>
+                                    </svg>
+                                    <span>Cartão de Débito</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="pix">
+                                <div class="payment-content">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                                        <path d="M12 8v8"></path>
+                                        <path d="M8 12h8"></path>
+                                    </svg>
+                                    <span>PIX</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="cash">
+                                <div class="payment-content">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                    </svg>
+                                    <span>Dinheiro</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Notas do Pedido -->
+                    <div class="order-notes-section">
+                        <h3>Observações do Pedido</h3>
+                        <textarea class="order-notes" placeholder="Alguma observação sobre seu pedido? (opcional)"></textarea>
+                    </div>
+
+                    <!-- Botão de Checkout -->
+                    <button class="checkout-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        Finalizar Pedido
+                    </button>
+
+                    <!-- Segurança -->
+                    <div class="security-notice">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <span>Pagamento seguro e criptografado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="cart-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Café Artesanal. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="/">Início</a>
+                <a href="/menu">Cardápio</a>
+                <a href="/perfil">Perfil</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

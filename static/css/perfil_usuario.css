@@ -1,0 +1,319 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-size: 16px;
+    --background: #ffffff;
+    --foreground: #252525;
+    --card: #ffffff;
+    --primary: #030213;
+    --primary-foreground: #ffffff;
+    --muted-foreground: #717182;
+    --border: rgba(0, 0, 0, 0.1);
+    --sidebar: #fafafa;
+    --sidebar-foreground: #252525;
+    --sidebar-primary: #030213;
+    --sidebar-primary-foreground: #fafafa;
+    --sidebar-accent: #f7f7f7;
+    --sidebar-accent-foreground: #343434;
+    --sidebar-border: #ebebeb;
+    --radius: 0.625rem;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f9fafb;
+    color: var(--foreground);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: var(--sidebar);
+    border-right: 1px solid var(--sidebar-border);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+.sidebar-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--sidebar-border);
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.logo-title {
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.logo-subtitle {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+}
+
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.5rem 0;
+}
+
+.sidebar-group {
+    padding: 0.5rem 0;
+}
+
+.sidebar-group-label {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted-foreground);
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    margin: 0.125rem 0.5rem;
+    border-radius: calc(var(--radius) - 2px);
+    color: var(--sidebar-foreground);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.15s ease;
+}
+
+.sidebar-menu-item:hover {
+    background-color: var(--sidebar-accent);
+    color: var(--sidebar-accent-foreground);
+}
+
+.sidebar-menu-item.active {
+    background-color: var(--sidebar-primary);
+    color: var(--sidebar-primary-foreground);
+}
+
+.sidebar-separator {
+    height: 1px;
+    background-color: var(--sidebar-border);
+    margin: 0.5rem 1rem;
+}
+
+.sidebar-footer {
+    padding: 1rem;
+    border-top: 1px solid var(--sidebar-border);
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: white;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header h1 {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.user-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background-color: transparent;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 2px);
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    color: var(--foreground);
+    transition: background-color 0.15s ease;
+}
+
+.user-button:hover {
+    background-color: #f3f3f5;
+}
+
+.content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.profile-header h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.username {
+    color: var(--muted-foreground);
+    margin-bottom: 0.5rem;
+}
+
+.status-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    background-color: #e9f8ea;
+    color: #236127;
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+}
+
+.field-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.field-item,
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px dashed var(--border);
+}
+
+.label {
+    color: var(--muted-foreground);
+}
+
+.value {
+    font-weight: 600;
+    text-align: right;
+}
+
+.btn-primary {
+    display: inline-block;
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: calc(var(--radius) - 2px);
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+@media (max-width: 860px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field-item {
+        flex-direction: column;
+    }
+
+    .value {
+        text-align: left;
+    }
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Coffeoteca</title>
+    <link rel="stylesheet" href="/static/css/perfil_usuario.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <div class="logo-icon">C</div>
+                    <div>
+                        <p class="logo-title">Centro de Negocios</p>
+                        <p class="logo-subtitle">Painel v1.0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-content">
+                <div class="sidebar-group">
+                    <div class="sidebar-group-label">Menu Principal</div>
+                    <nav class="sidebar-menu">
+                        <a href="/perfil" class="sidebar-menu-item">
+                            <span>Painel</span>
+                        </a>
+                        <a href="/clientes" class="sidebar-menu-item">
+                            <span>Clientes</span>
+                        </a>
+                        <a href="/adicionar_produto" class="sidebar-menu-item">
+                            <span>Menu do Cafe</span>
+                        </a>
+                        <a href="/menu" class="sidebar-menu-item">
+                            <span>Biblioteca de Livros</span>
+                        </a>
+                    </nav>
+                </div>
+
+                <div class="sidebar-separator"></div>
+
+                <div class="sidebar-group">
+                    <div class="sidebar-group-label">Perfil</div>
+                    <nav class="sidebar-menu">
+                        <a href="/perfil_usuario" class="sidebar-menu-item active">
+                            <span>Informacoes do Usuario</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="/" class="sidebar-menu-item">
+                    <span>Ajuda e Suporte</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h1>Perfil do Usuario</h1>
+                <div class="header-actions">
+                    <a class="user-button" href="/perfil_usuario">Usuario</a>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="profile-header card">
+                    <div class="avatar">{{ perfil.nome[:1]|upper }}</div>
+                    <div>
+                        <h2>{{ perfil.nome }}</h2>
+                        <p class="username">@{{ perfil.username }}</p>
+                        <span class="status-badge">{{ perfil.status }}</span>
+                    </div>
+                </div>
+
+                <div class="profile-grid">
+                    <article class="card">
+                        <div class="card-header">
+                            <h3>Informacoes de Cadastro</h3>
+                        </div>
+                        <div class="card-content field-list">
+                            <div class="field-item"><span class="label">Nome completo</span><span class="value">{{ perfil.nome }}</span></div>
+                            <div class="field-item"><span class="label">Nome de usuario</span><span class="value">{{ perfil.username }}</span></div>
+                            <div class="field-item"><span class="label">E-mail</span><span class="value">{{ perfil.email }}</span></div>
+                            <div class="field-item"><span class="label">Membro desde</span><span class="value">{{ perfil.membro_desde }}</span></div>
+                            <div class="field-item"><span class="label">Plano</span><span class="value">{{ perfil.plano }}</span></div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-header">
+                            <h3>Resumo da Conta</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="summary-item"><span>Perfil</span><strong>Cliente</strong></div>
+                            <div class="summary-item"><span>Pedidos</span><strong>0</strong></div>
+                            <div class="summary-item"><span>Itens no carrinho</span><strong>Consulte no carrinho</strong></div>
+                            <a href="/perfil" class="btn-primary">Voltar ao painel</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
